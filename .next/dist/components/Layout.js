@@ -34,6 +34,11 @@ var _Header2 = _interopRequireDefault(_Header);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var _jsxFileName = '/Users/prasannagaddam/code/project/personal-blog/components/Layout.js';
+
+// Components
+
+
 var Layout = function (_Component) {
   (0, _inherits3.default)(Layout, _Component);
 
@@ -53,12 +58,20 @@ var Layout = function (_Component) {
         border: '1px solid #DDD'
       };
 
-      return _react2.default.createElement('div', { className: layoutStyle }, _react2.default.createElement(_Header2.default, null), this.props.children);
+      return _react2.default.createElement('div', { className: layoutStyle, __source: {
+          fileName: _jsxFileName,
+          lineNumber: 17
+        }
+      }, _react2.default.createElement(_Header2.default, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18
+        }
+      }), this.props.children);
     }
   }]);
 
   return Layout;
 }(_react.Component);
 
-// Components
 exports.default = Layout;

@@ -18,6 +18,9 @@ export default class Header extends Component {
       	<Link href="/about">
       	  <a style={ linkStyle }> About </a>
       	</Link>
+        <Link href="/articles">
+      	  <a style={ linkStyle }> Articles </a>
+      	</Link>
       </div>
     )
 
