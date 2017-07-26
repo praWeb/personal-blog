@@ -4,7 +4,7 @@ import axios from 'axios'
 // Components
 import Layout from '../components/Layout.js'
 
-export default class Page extends Component {
+export default class Post extends Component {
 
   static async getInitialProps(context) {
     let query = context.query

@@ -25,7 +25,7 @@ function create(initialState) {
     initialState: initialState,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     networkInterface: (0, _reactApollo.createNetworkInterface)({
-      uri: 'https://api.graph.cool/simple/v1/cixmkt2ul01q00122mksg82pn', // Server URL (must be absolute)
+      uri: 'https://api.graph.cool/simple/v1/cj5lex1plibz10134zfh9yqfs', // Server URL (must be absolute)
       opts: { // Additional fetch() options like `credentials` or `headers`
         credentials: 'same-origin'
       }
