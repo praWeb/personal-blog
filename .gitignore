@@ -1,1 +1,12 @@
-./node_modules
+node_modules/**/**
+.next/**/**
+
+.next/bundles/pages/index.js
+
+.next/commons.js
+
+.next/dist/pages/index.js
+
+.next/dist/pages/users.js
+
+.next/manifest.js

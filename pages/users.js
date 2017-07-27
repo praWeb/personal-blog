@@ -4,28 +4,24 @@ import { gql, graphql } from 'react-apollo'
 // Components
 import UsersList from '../components/UsersList.js'
 
-function Users({ data: { loading, allUsers } }) {
-  if(loading){
+class Users extends Component {
+  render () {
     return (
-      <div> .... Loading..... </div>
+      <section>
+        <h1> Registered Users </h1>
+        <UsersList usersList={this.props.data.allUsers} />
+      </section>
     )
-  }else {
-    return (
-        <section>
-          <h1> Registered Users </h1>
-          <UsersList usersList = {allUsers} />
-        </section>
-      )
   }
 }
 
-export default graphql(
-  gql`
-    query allUsers {
-      allUsers {
-        id
-        email
-      }
+const UsersQuery = gql`
+  query allUsers {
+    allUsers {
+      id
+      email
     }
-  `
-)(Users)
+  }
+`
+
+export default graphql(UsersQuery)(Users)

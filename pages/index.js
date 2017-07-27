@@ -7,6 +7,6 @@ import Users from './users'
 export default withData((props) => (
   <App>
     <CreateUser/>
-    // <Users/>
+    <Users/>
   </App>
 ))
