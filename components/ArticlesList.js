@@ -1,21 +1,29 @@
 import { Component } from 'react'
-import { gql, graphql } from 'react-apollo'
+
 
 export default class ArticlesList extends Component {
-
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     let articlesList = this.props.articlesList || []
 
-    console.log(articlesList)
+    if(articlesList.length < 1) {
+      return(
+        <div> No Articles Published so far... </div>
+      )
+    }
 
     return(
       <ul>
       {
-        articlesList.map( article => <li key={article.id}> { article.name } </li>)
+        articlesList.map( article => <li key={article.id}>
+          { article.author.email }
+          <div>
+            { article.title }
+            <p>
+              { article.text }
+            </p>
+          </div>
+        </li>)
       }
       </ul>
     )

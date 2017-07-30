@@ -1,15 +1,19 @@
 import { Component } from 'react'
 import { gql, graphql } from 'react-apollo'
+import withData from '../lib/withData'
 
 // Components
+import Layout from './../components/Layout'
 import UsersList from '../components/UsersList.js'
 
 class Users extends Component {
   render () {
     return (
       <section>
-        <h1> Registered Users </h1>
-        <UsersList usersList={this.props.data.allUsers} />
+        <Layout>
+          <h1> Registered Users </h1>
+          <UsersList usersList={this.props.data.allUsers} />
+        </Layout>
       </section>
     )
   }
@@ -24,4 +28,4 @@ const UsersQuery = gql`
   }
 `
 
-export default graphql(UsersQuery)(Users)
+export default withData(graphql(UsersQuery)(Users))

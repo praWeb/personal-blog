@@ -21,6 +21,15 @@ export default class Header extends Component {
         <Link href="/articles">
       	  <a style={ linkStyle }> Articles </a>
       	</Link>
+        <Link href="/createArticle">
+          <a style={ linkStyle }> Create Article </a>
+        </Link>
+        <Link href="/users">
+      	  <a style={ linkStyle }> Users </a>
+      	</Link>
+        <Link href="/createUser">
+          <a style={ linkStyle }> Create User </a>
+        </Link>
       </div>
     )
 

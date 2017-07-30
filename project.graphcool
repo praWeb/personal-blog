@@ -1,11 +1,13 @@
 # project: cj5lex1plibz10134zfh9yqfs
-# version: 4
+# version: 6
 
 type User implements Node {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
   articles: [Article!]! @relation(name: "Articles")
+  email: String @isUnique
+  password: String
 }
 
 type File implements Node {
@@ -21,6 +23,7 @@ type File implements Node {
 
 type Article implements Node {
   text: String!
+  title: String!
   createdAt: DateTime!
   id: ID! @isUnique
   updatedAt: DateTime!

@@ -1,12 +1,11 @@
 import withData from '../lib/withData'
 
 import App from './App'
-import CreateUser from '../components/CreateUser'
-import Users from './users'
+import Login from './../components/Login'
+
 
 export default withData((props) => (
   <App>
-    <CreateUser/>
-    <Users/>
-  </App>
+    <Login/>
+  </App>  
 ))
