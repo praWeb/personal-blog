@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { gql, graphql } from 'react-apollo'
+import { gql, graphql, compose } from 'react-apollo'
 import withData from './../lib/withData'
+import AuthService from './AuthService'
 
-class Login extends Component {
+const auth = new AuthService()
 
+// utils/AuthService.js
+class LoginService extends Component{
   constructor(props) {
     super(props)
     this.state = {
@@ -14,18 +17,30 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
-    console.log(this.props)
+  login() {
+    let token = ""
+    let user = ""
+    let _this = this
     this.props.mutate({
       variables:{ email: this.state.email, password: this.state.password }
-    }).then(function(data){
-      console.log(data)
+    }).then(function(response){
+      token = response.data.signinUser.token
+      user = response.data.signinUser.user
+      if(user){
+        console.log(user)
+        auth.login(token, user)
+        document.location.pathname="/"
+      }
     })
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value })
+  }
+
+  handleSubmit(e){
+    e.preventDefault()
+    this.login()
   }
 
   render() {
@@ -39,15 +54,19 @@ class Login extends Component {
       </section>
     )
   }
-
 }
 
 const signinUser = gql`
   mutation signinUser($email: String!, $password: String!) {
     signinUser(email: { email: $email, password: $password } ) {
       token
+      user {
+        email
+        id
+      }
     }
   }
 `
-
-export default withData(graphql(signinUser)(Login))
+export default withData(compose(
+  graphql(signinUser)
+)(LoginService));

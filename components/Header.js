@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Link from 'next/link'
+import {Link} from '../config/routes'
+import UserSession from './UserSession'
 
 export default class Header extends Component {
 
@@ -18,7 +19,7 @@ export default class Header extends Component {
         <Link href="/about">
       	  <a style={ linkStyle }> About </a>
       	</Link>
-        <Link href="/articles">
+        <Link route="article">
       	  <a style={ linkStyle }> Articles </a>
       	</Link>
         <Link href="/createArticle">
@@ -30,6 +31,9 @@ export default class Header extends Component {
         <Link href="/createUser">
           <a style={ linkStyle }> Create User </a>
         </Link>
+
+        <UserSession />
+
       </div>
     )
 

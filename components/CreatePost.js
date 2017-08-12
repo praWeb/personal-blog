@@ -1,5 +1,8 @@
 import { gql, graphql } from 'react-apollo'
 import React, { Component } from 'react'
+import AuthService from '../utils/AuthService'
+const auth = new AuthService()
+
 
 class CreatePost extends Component {
 
@@ -20,7 +23,7 @@ class CreatePost extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.mutate({
-      variables:{ title: this.state.title, text: this.state.text }
+      variables:{ title: this.state.title, text: this.state.text, authorId: auth.getProfile().id }
     })
   }
 
@@ -39,8 +42,8 @@ class CreatePost extends Component {
 }
 
 const createPost = gql`
-  mutation createArticle($title: String!, $text: String!, $authorId: String) {
-    createArticle(title: $title, text: $text, authorId: "cj5lksni7a55j0123s3pzqfhi") {
+  mutation createArticle($title: String!, $text: String!, $authorId: ID!) {
+    createArticle(title: $title, text: $text, authorId: $authorId) {
       id
       text
       createdAt
