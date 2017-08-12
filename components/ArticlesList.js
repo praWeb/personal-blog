@@ -1,5 +1,5 @@
 import { Component } from 'react'
-
+import {Link} from '../config/routes'
 
 export default class ArticlesList extends Component {
 
@@ -18,7 +18,9 @@ export default class ArticlesList extends Component {
         articlesList.map( article => <li key={article.id}>
           { article.author.email }
           <div>
-            { article.title }
+            <Link as={`/article/${article.id}`} route={`/article/id=${article.id}`}>
+              { article.title }
+            </Link>
             <p>
               { article.text }
             </p>

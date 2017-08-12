@@ -13,7 +13,7 @@ export default class Header extends Component {
 
     return (
       <div>
-      	<Link href="/">
+      	<Link route="/">
       	  <a style={ linkStyle }> Home </a>
       	</Link>
         <Link href="/about">
