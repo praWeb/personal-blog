@@ -1,20 +1,13 @@
 import React, { Component } from 'react'
-import { gql, graphql } from 'react-apollo'
+import { gql, graphql, gqlQuery } from 'react-apollo'
 import withData from '../lib/withData'
 
 import ArticleData from '../components/ArticleData'
 
 class Article extends Component{
 
-  constructor(props) {
+  constructor(props,article) {
     super(props)
-  }
-
-  componentDidMount() {
-    console.log(this.props)
-    console.log(this.props.url.query.id)
-    // const country = this.gqlQuery({query: article, variables: {id: this.props.url.query.id}).get()
-    // console.log(country)
   }
 
   render() {
@@ -28,7 +21,7 @@ class Article extends Component{
     }else{
       return(
         <section>
-          <ArticleData article={ this.props.data.article } />
+          <ArticleData article={ this.props.data.Article } />
         </section>
       )
     }

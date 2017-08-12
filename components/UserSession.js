@@ -1,7 +1,7 @@
 // ./pages/login.js
 import React, { Component } from 'react'
 import AuthService from '../utils/AuthService'
-const auth = new AuthService('http://localhost:3000')
+const auth = new AuthService()
 
 export default class UserSession extends Component {
 

@@ -16,19 +16,19 @@ export default class Header extends Component {
       	<Link route="/">
       	  <a style={ linkStyle }> Home </a>
       	</Link>
-        <Link href="/about">
+        <Link route="/about">
       	  <a style={ linkStyle }> About </a>
       	</Link>
-        <Link route="article">
+        <Link route="/articles">
       	  <a style={ linkStyle }> Articles </a>
       	</Link>
-        <Link href="/createArticle">
+        <Link route="/createArticle">
           <a style={ linkStyle }> Create Article </a>
         </Link>
-        <Link href="/users">
+        <Link route="/users">
       	  <a style={ linkStyle }> Users </a>
       	</Link>
-        <Link href="/createUser">
+        <Link route="/createUser">
           <a style={ linkStyle }> Create User </a>
         </Link>
 
