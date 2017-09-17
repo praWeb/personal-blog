@@ -1,32 +1,29 @@
 const express = require('express')
 const next = require('next')
-const routes = require('./config/routes')
+const { createReadStream } = require('fs')
 
+const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
-const handle = routes.getRequestHandler(app)
+const handle = app.getRequestHandler()
 
-app.prepare()
-  .then(() => {
-    // const server = express()
-    //
-    // server.get('/p/:id', (req, res) => {
-    //   const page = "/post"
-    //   const queryParams = { id: req.params.id }
-    //   app.render(req, res, page, queryParams)
-    // })
-    //
-    // server.get('*', (req,res) => {
-    //   return handle(req, res)
-    // })
-    //
-    // server.listen(3000, (err) => {
-    //   if(err) throw err
-    //   console.log("Ready on http://localhost:3000")
-    // })
-    express().use(handle).listen(3000)
+app.prepare().then(() => {
+  const server = express()
+
+  server.get('/serviceWorker.js', (req, res) => {
+    res.setHeader('content-type', 'text/javascript')
+    createReadStream('./static/serviceWorker.js').pipe(res)
   })
-  .catch((ex) => {
-    console.error(ex.stack)
-    process.exit(1)
+
+  server.get('*', (req, res) => {
+    return handle(req, res)
   })
+
+  server.listen(port, (err) => {
+    if (err) throw err
+    console.log(`> Ready on http://localhost:${port}`)
+  })
+}).catch((ex) => {
+  console.log(ex)
+  process.exit(1)
+})

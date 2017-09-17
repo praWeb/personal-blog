@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { gql, graphql, gqlQuery } from 'react-apollo'
 import withData from '../lib/withData'
 
-// Components
-import Layout from '../components/Layout.js'
-import ArticleData from '../components/ArticleData'
+import UpdateArticle from '../components/UpdateArticle'
 
 class Article extends Component{
 
@@ -23,9 +21,7 @@ class Article extends Component{
     }else{
       return(
         <section>
-          <Layout>
-            <ArticleData article={ this.props.data.Article } />
-          </Layout>  
+          <UpdateArticle article={ this.props.data.Article } />
         </section>
       )
     }

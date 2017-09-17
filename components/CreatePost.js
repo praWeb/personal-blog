@@ -1,8 +1,10 @@
 import { gql, graphql } from 'react-apollo'
 import React, { Component } from 'react'
 import AuthService from '../utils/AuthService'
-const auth = new AuthService()
+import FlashMessage from './ui/FlashMessage'
+import { Router } from './../config/routes'
 
+const auth = new AuthService()
 
 class CreatePost extends Component {
 
@@ -10,7 +12,8 @@ class CreatePost extends Component {
     super(props)
     this.state={
       "title": "",
-      "text": ""
+      "text": "",
+      message: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -22,14 +25,29 @@ class CreatePost extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    let _this = this
     this.props.mutate({
       variables:{ title: this.state.title, text: this.state.text, authorId: auth.getProfile().id }
+    }).then(function(response){
+      if(response.data.createArticle){
+        _this.setState({
+          message: "Article created successfully!",
+          title: "",
+          text: ""
+        })
+        document.location.pathname = `/article/${response.data.createArticle.id}`
+      }else{
+        _this.setState({
+          message: "Article creation failed!"
+        })
+      }
     })
   }
 
   render(){
     return (
       <section>
+        <FlashMessage message={ this.state.message } />
         <form onSubmit={ this.handleSubmit }>
           <input type="text" placeholder="Title" name="title" onChange={ this.handleChange }/>
           <textarea rows="4" cols="20" placeholder="article content" name="text" onChange={ this.handleChange }/>

@@ -32,19 +32,16 @@ class ArticlesList extends Component {
       <ul>
       {
         articlesList.map( article => <li key={article.id}>
-          { article.author.email }
           <div>
-            <Link as={`/article/${article.id}`} route={`/article/${article.id}`}>
+            <author> { article.author.email } </author>
+            <form onSubmit={ this.handleDelete }>
+              <input type="submit" id={ article.id } value="Delete"/>
+            </form>
+          </div>
+          <div>
+            <Link route="article" params={{id: article.id}}>
               { article.title }
             </Link>
-            <p>
-              { article.text }
-            </p>
-            <div>
-              <form onSubmit={ this.handleDelete }>
-                <input type="submit" id={ article.id } value="Delete"/>
-              </form>
-            </div>
           </div>
         </li>)
       }
